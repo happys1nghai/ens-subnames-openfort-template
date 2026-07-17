@@ -11,7 +11,7 @@ import { sepolia } from "viem/chains";
 
 const config = createConfig(
   getDefaultConfig({
-    appName: "Openfort x Namespace Demo",
+    appName: "Namespace × Openfort",
     chains: [sepolia],
     ssr: true,
   })

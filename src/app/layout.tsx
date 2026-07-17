@@ -1,21 +1,21 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
+import "@thenamespace/uikit/styles.css";
 import { Providers } from "./providers";
 
-const geistSans = Geist({
+const inter = Inter({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
-  title: "ENS Subnames + Openfort Starter Kit",
+  title: "Namespace × Openfort Starter Kit",
   description: "A Next.js starter kit for ENS Offchain Subnames with Openfort Embedded Wallets",
+  icons: {
+    icon: "/brand/favicon.png",
+    apple: "/brand/favicon.png",
+  },
 };
 
 export const dynamic = "force-dynamic";
@@ -26,9 +26,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${inter.variable} antialiased`}
       >
         <Providers>
           {children}

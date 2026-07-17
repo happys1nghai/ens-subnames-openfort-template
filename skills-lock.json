@@ -1,6 +1,12 @@
 {
   "version": 1,
   "skills": {
+    "ens-components": {
+      "source": "thenamespace/skills",
+      "sourceType": "github",
+      "skillPath": "skills/ens-components/SKILL.md",
+      "computedHash": "71a97ca4a4237b8ce15b05ab6019241e5bb7e143f6a4f0d960321b09b3cc2ccb"
+    },
     "openfort": {
       "source": "openfort-xyz/agent-skills",
       "sourceType": "github",

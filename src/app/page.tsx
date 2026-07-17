@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import Link from "next/link";
 import { ProfileButton } from "@/components/ui/profile-button";
 import { Button } from "@/components/ui/button";
@@ -12,7 +11,8 @@ export default function Home() {
       <header className="w-full border-b border-slate-200 bg-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/60">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex items-center gap-2">
-            <Image src="/logo.png" alt="Namespace" width={32} height={32} />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/brand/horizontal-logo-dark.svg" alt="Namespace" className="h-[28px] w-auto" />
           </div>
           <ProfileButton />
         </div>
