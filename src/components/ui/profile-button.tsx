@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { useBalance } from 'wagmi'
+import { formatUnits } from 'viem'
 import { OpenfortButton } from "@openfort/react";
 import { useIdentity } from '@/hooks/use-identity'
 import { AccountModal } from './account-modal'
@@ -53,6 +54,10 @@ function ProfileButtonContent({
     address: address as `0x${string}`,
   })
 
+  const formattedBalance = balance
+    ? { formatted: formatUnits(balance.value, balance.decimals), symbol: balance.symbol }
+    : undefined
+
   // Onboarding: open modal after login when no subname, once per session per address
   const openedForAddressRef = useRef<string | null>(null)
 
@@ -95,6 +100,7 @@ function ProfileButtonContent({
         {/* Avatar */}
         <div className="relative w-8 h-8 rounded-full overflow-hidden flex items-center justify-center">
           {avatarSrc ? (
+            // eslint-disable-next-line @next/next/no-img-element
             <img 
               src={avatarSrc} 
               alt={name || 'Avatar'} 
@@ -117,9 +123,9 @@ function ProfileButtonContent({
           <span className="text-sm font-medium text-gray-900">
             {isLoading ? '...' : name}
           </span>
-          {balance && (
+          {formattedBalance && (
             <span className="text-xs text-gray-500">
-             {parseFloat(balance.formatted).toFixed(3)} {balance.symbol}
+              {parseFloat(formattedBalance.formatted).toFixed(3)} {formattedBalance.symbol}
             </span>
           )}
         </div>
@@ -134,7 +140,7 @@ function ProfileButtonContent({
         avatarSrc={avatarSrc}
         fallbackEmoji={fallbackEmoji}
         fallbackColor={fallbackColor}
-        balance={balance}
+        balance={formattedBalance}
         hasSubnames={hasSubnames}
         subname={subname}
         refetchIdentity={refetch}

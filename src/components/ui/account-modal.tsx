@@ -5,9 +5,12 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 import { Sheet, SheetContent } from '@/components/ui/sheet'
 import { useMediaQuery } from '@/hooks/use-media-query'
 import { XIcon, CheckIcon, ClipboardIcon } from 'lucide-react'
-import { useDisconnect } from 'wagmi'
 import { showSuccessToast, showErrorToast } from './custom-toast'
 import { Button } from '@/components/ui/button'
+import { useDebounce } from '@/hooks/use-debounce'
+import { useSubnameAvailability, useCreateSubname } from '@/hooks/use-subname-creation'
+import { AvatarUpload } from '@/components/ui/avatar-upload'
+import { useSignOut } from '@openfort/react'
 
 interface AccountModalProps {
   isOpen: boolean
@@ -63,6 +66,7 @@ export function AccountModal({
   // When the modal opens and the user has no subnames, start on the create-username view
   useEffect(() => {
     if (isOpen && !hasSubnames) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- derive initial view from props on open
       setCurrentView('create-username')
     }
   }, [isOpen, hasSubnames])
@@ -229,6 +233,7 @@ function AccountView({
       <div className="flex flex-col items-center text-center">
         <div className="relative w-20 h-20 rounded-full overflow-hidden flex items-center justify-center mb-3 ring-2 ring-gray-100">
           {avatarSrc ? (
+            // eslint-disable-next-line @next/next/no-img-element
             <img 
               src={avatarSrc} 
               alt={name} 
@@ -307,8 +312,6 @@ function AccountView({
 }
 
 // Create Username View Component
-import { useDebounce } from '@/hooks/use-debounce'
-import { useSubnameAvailability, useCreateSubname } from '@/hooks/use-subname-creation'
 
 function CreateUsernameView({
   address,
@@ -422,8 +425,6 @@ function CreateUsernameView({
 }
 
 // Upload Avatar View Component
-import { AvatarUpload } from '@/components/ui/avatar-upload'
-import { useSignOut } from '@openfort/react'
 
 function UploadAvatarView({
   subname,

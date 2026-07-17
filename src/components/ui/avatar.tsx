@@ -15,13 +15,11 @@ Avatar.displayName = "Avatar"
 const AvatarImage = React.forwardRef<
   HTMLImageElement,
   React.ImgHTMLAttributes<HTMLImageElement> & { src?: string }
->(({ className = "", src, alt, ...props }, ref) => {
+>(({ className = "", src, alt, ...props }) => {
   if (!src) return null
-  
-  // Check if it's a data URL or external URL
-  const isDataUrl = src.startsWith('data:')
-  
+
   return (
+    // eslint-disable-next-line @next/next/no-img-element
     <img
       src={src}
       alt={alt || "Avatar"}
@@ -47,4 +45,3 @@ const AvatarFallback = React.forwardRef<
 AvatarFallback.displayName = "AvatarFallback"
 
 export { Avatar, AvatarImage, AvatarFallback }
-

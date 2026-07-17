@@ -135,7 +135,7 @@ export function AvatarUpload({
         lastModified: Date.now(),
       })
       return croppedFile
-    } catch (error) {
+    } catch {
       throw new Error('Failed to create cropped image')
     }
   }

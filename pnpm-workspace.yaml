@@ -1,0 +1,8 @@
+allowBuilds:
+  '@openfort/openfort-node': true
+  '@tailwindcss/oxide': true
+  bufferutil: true
+  keccak: true
+  sharp: true
+  unrs-resolver: true
+  utf-8-validate: true
